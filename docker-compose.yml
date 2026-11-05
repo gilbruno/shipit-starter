@@ -1,0 +1,15 @@
+# Développement local : API + PostgreSQL
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_PASSWORD: shipit
+      POSTGRES_DB: shipit
+    ports: ["5432:5432"]
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgres://postgres:shipit@db:5432/shipit
+      APP_VERSION: local
+    ports: ["3000:3000"]
+    depends_on: [db]
