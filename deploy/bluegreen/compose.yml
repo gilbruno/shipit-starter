@@ -1,0 +1,14 @@
+# Blue/green : deux versions côte à côte, un routeur choisit laquelle reçoit le trafic.
+services:
+  blue:
+    image: ${BLUE_IMAGE:-shipit:1.0.0}
+  green:
+    image: ${GREEN_IMAGE:-shipit:1.1.0}
+  proxy:
+    image: nginx:stable-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./active.conf:/etc/nginx/active.conf:ro
+    depends_on: [blue, green]

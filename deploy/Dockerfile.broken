@@ -1,0 +1,5 @@
+# Image volontairement CASSÉE, pour s'entraîner au retour arrière.
+# Usage : docker build -f deploy/Dockerfile.broken --build-arg BASE=shipit:1.1.0 -t shipit:2.0.0 .
+ARG BASE
+FROM ${BASE}
+CMD ["node", "-e", "console.error('démarrage impossible'); process.exit(1)"]

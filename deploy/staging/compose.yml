@@ -1,0 +1,8 @@
+# Environnement « staging » : l'image publiée, démarrée à l'identique de la production.
+services:
+  app:
+    image: ${IMAGE:?IMAGE manquante (ex. ghcr.io/compte/shipit-starter:1.0.0)}
+    environment:
+      APP_ENV: staging
+    ports:
+      - "8081:3000"
