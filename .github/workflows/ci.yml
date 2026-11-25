@@ -1,0 +1,15 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7 # pour recuperer le code
+      - uses: actions/setup-node@v7 #installer nodejs
+        with:
+          node-version: 24
+      - run: npm ci # telechargement des dependences
+      - run: npm test # lancements des tests
